@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+
+def DEFAULT_GOOGLE_PLAY_SERVICES_VERSION    = '18.1.1'
+
+def getExtOrDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['BongloyReactNative_' + name]
+}
+
+def getExtOrIntegerDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['BongloyReactNative_' + name]).toInteger()
+}
+
+android {
+  compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
+  buildToolsVersion getExtOrDefault('buildToolsVersion')
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+    versionCode 1
+    versionName "1.0"
+  }
+  
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  lintOptions {
+    disable 'GradleCompatible'
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
+  google()
+}
+
+def googlePlayServicesVersion = rootProject.hasProperty('googlePlayServicesVersion')  ? rootProject.googlePlayServicesVersion : DEFAULT_GOOGLE_PLAY_SERVICES_VERSION
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation 'com.facebook.react:react-native:+'
+  implementation 'com.android.support:support-v4:28.0.0'
+  implementation 'com.android.support:appcompat-v7:28.0.0'
+  implementation 'com.stripe:stripe-android:8.1.0'
+  implementation 'com.bongloy:bongloy-android:1.0.0'
+  implementation "com.google.android.gms:play-services-wallet:$googlePlayServicesVersion"
+
+}
