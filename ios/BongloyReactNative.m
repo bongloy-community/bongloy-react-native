@@ -137,4 +137,9 @@ RCT_EXPORT_METHOD(createTokenWithCard:(NSDictionary *)params
     }
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 @end
