@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
   }
 
-  handleCustomPayPress = async () => {
+  handlePayPress = async () => {
     try {
       bongloy.setDefaultPublishableKey({publishableKey: "pk_test_69bf785ab0e264c9b6b081040ea460eaf79833ae2219e57f1cc3379c26955c1a"});
       this.setState({ token: null, error: null })
@@ -36,7 +36,7 @@ class App extends Component {
     return (
       <View>
         <Button title="Pay"
-          onPress={this.handleCustomPayPress}
+          onPress={this.handlePayPress}
           color="#96BF63"
           accessibilityLabel="Pay button"
         />

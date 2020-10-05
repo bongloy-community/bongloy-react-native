@@ -65,8 +65,7 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
-    "types/react": "*"
+    "react-native": "*"
   },
   "jest": {
     "preset": "react-native",
